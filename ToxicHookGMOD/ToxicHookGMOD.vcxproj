@@ -36,7 +36,7 @@
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
@@ -142,14 +142,30 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="ButtonCode.h" />
+    <ClInclude Include="ClientModeShared.h" />
+    <ClInclude Include="client_class.h" />
+    <ClInclude Include="CUserCmd.h" />
     <ClInclude Include="Globals.h" />
     <ClInclude Include="HackManager.h" />
+    <ClInclude Include="HookManager.h" />
+    <ClInclude Include="IBaseClientDll.h" />
+    <ClInclude Include="iclientnetworkable.h" />
+    <ClInclude Include="iclientunknown.h" />
+    <ClInclude Include="ihandleentity.h" />
     <ClInclude Include="Includes.h" />
+    <ClInclude Include="InterfaceManager.h" />
     <ClInclude Include="Logger.h" />
+    <ClInclude Include="RecvTable.h" />
+    <ClInclude Include="SDK.h" />
     <ClInclude Include="Structures.h" />
+    <ClInclude Include="Typedefs.h" />
     <ClInclude Include="Utilities.h" />
+    <ClInclude Include="Vector.h" />
+    <ClInclude Include="VTable.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CreateMove.cpp" />
     <ClCompile Include="dllmain.cpp">
       <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</CompileAsManaged>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -166,6 +182,8 @@
     </ClCompile>
     <ClCompile Include="Globals.cpp" />
     <ClCompile Include="HackManager.cpp" />
+    <ClCompile Include="HookManager.cpp" />
+    <ClCompile Include="InterfaceManager.cpp" />
     <ClCompile Include="Logger.cpp" />
     <ClCompile Include="Pointer.cpp" />
     <ClCompile Include="Utilities.cpp" />
