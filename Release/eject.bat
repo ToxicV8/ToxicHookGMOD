@@ -1,0 +1,1 @@
+Injector.exe --process-name hl2.exe --module-name ToxicHookGMOD.dll --eject

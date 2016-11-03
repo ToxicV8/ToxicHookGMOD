@@ -142,11 +142,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Text Include="ReadMe.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="stdafx.h" />
-    <ClInclude Include="targetver.h" />
+    <ClInclude Include="Globals.h" />
+    <ClInclude Include="HackManager.h" />
+    <ClInclude Include="Includes.h" />
+    <ClInclude Include="Logger.h" />
+    <ClInclude Include="Structures.h" />
+    <ClInclude Include="Utilities.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -163,8 +164,11 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="stdafx.cpp" />
-    <ClCompile Include="ToxicHookGMOD.cpp" />
+    <ClCompile Include="Globals.cpp" />
+    <ClCompile Include="HackManager.cpp" />
+    <ClCompile Include="Logger.cpp" />
+    <ClCompile Include="Pointer.cpp" />
+    <ClCompile Include="Utilities.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

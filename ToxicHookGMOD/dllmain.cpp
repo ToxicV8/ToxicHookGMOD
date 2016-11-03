@@ -1,19 +1,20 @@
-// dllmain.cpp : Definiert den Einstiegspunkt für die DLL-Anwendung.
-#include "stdafx.h"
+#include "Includes.h"
 
-BOOL APIENTRY DllMain( HMODULE hModule,
-                       DWORD  ul_reason_for_call,
-                       LPVOID lpReserved
-					 )
+
+BOOL APIENTRY DllMain( HMODULE hModule, DWORD dwReason, LPVOID lpReserved)
 {
-	switch (ul_reason_for_call)
+	if(dwReason == DLL_PROCESS_ATTACH )
 	{
-	case DLL_PROCESS_ATTACH:
-	case DLL_THREAD_ATTACH:
-	case DLL_THREAD_DETACH:
-	case DLL_PROCESS_DETACH:
-		break;
+		g_pHackManager->Start();
 	}
-	return TRUE;
+
+	if(dwReason == DLL_PROCESS_DETACH )
+	{
+		g_pHackManager->Stop();
+
+		delete g_pHackManager;
+	}
+
+	return true;
 }
 
