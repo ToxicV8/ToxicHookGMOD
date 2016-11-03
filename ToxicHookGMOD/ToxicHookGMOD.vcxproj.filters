@@ -84,6 +84,9 @@
     <ClInclude Include="HookManager.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="IN_BUTTONS.h">
+      <Filter>Headerdateien\SDK</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">

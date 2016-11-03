@@ -10,4 +10,5 @@
 #include "Vector.h"
 #include "CUserCmd.h"
 #include "IBaseClientDll.h"
+#include "IN_BUTTONS.h"
 #include "ClientModeShared.h"

@@ -1,13 +1,13 @@
 #pragma once
 #include "SDK.h"
+
 class CUserCmd
 {
 public:
 	virtual ~CUserCmd() { };
 	int		command_number;
 	int		tick_count;
-	Vector	viewangles;
-	Vector	aimdirection;
+	QAngle	viewangles;
 	float	forwardmove;
 	float	sidemove;
 	float	upmove;
@@ -19,5 +19,21 @@ public:
 	short	mousedx;
 	short	mousedy;
 	bool	hasbeenpredicted;
-	char	pad_0x4C[0x18];
+	char	padding[284];
+
+
+	inline bool* context()
+	{
+		return (bool*)((char*)this + 0x5A);
+	}
+
+	inline Vector* contextaim()
+	{
+		return (Vector*)((char*)this + 0x5C);
+	}
+
+	inline char* mousewheel()
+	{
+		return (char*)((char*)this + 0x59);
+	}
 };

@@ -6,7 +6,7 @@ bool __fastcall hkCreateMove(void* thisptr, void* esp, float smt, CUserCmd* cmd)
 		return false;
 
 	if (GetAsyncKeyState(VK_SPACE))
-		cmd->viewangles.y = -89.f;
+		cmd->viewangles.y = 89;
 
 	return true;
 }

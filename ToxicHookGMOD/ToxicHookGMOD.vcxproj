@@ -155,6 +155,7 @@
     <ClInclude Include="ihandleentity.h" />
     <ClInclude Include="Includes.h" />
     <ClInclude Include="InterfaceManager.h" />
+    <ClInclude Include="IN_BUTTONS.h" />
     <ClInclude Include="Logger.h" />
     <ClInclude Include="RecvTable.h" />
     <ClInclude Include="SDK.h" />
