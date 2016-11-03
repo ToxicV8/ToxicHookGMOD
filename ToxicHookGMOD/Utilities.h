@@ -2,6 +2,10 @@
 class Utilities
 {
 public:
+
+	/// <summary>
+	/// Initializes a new instance of the <see cref="Utilities"/> class.
+	/// </summary>
 	Utilities();
 
 	/// <summary>
@@ -21,6 +25,9 @@ public:
 	/// </returns>
 	std::string GetFormattedTime(const char* format);
 
+	/// <summary>
+	/// Finalizes an instance of the <see cref="Utilities"/> class.
+	/// </summary>
 	~Utilities();
 };
 extern Utilities* g_pUtils;
