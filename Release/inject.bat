@@ -1,1 +1,1 @@
-Injector.exe --process-name hl2.exe --module-name ToxicHookGMOD.dll --inject
+Injector.exe --process-id %1 --module-name ToxicHookGMOD.dll --inject

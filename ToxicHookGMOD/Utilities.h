@@ -9,6 +9,18 @@ public:
 	Utilities();
 
 	/// <summary>
+	/// Gets the virtual function.
+	/// </summary>
+	/// <param name="index">The index.</param>
+	/// <param name="table">The table.</param>
+	/// <returns>The VFunc</returns>
+	template<typename T>
+	T GetVirtualFunction(int index, void* table)
+	{
+		return (*(T**)table)[index];
+	}
+
+	/// <summary>
 	/// Arguments the list to a string.
 	/// </summary>
 	/// <param name="format">The format.</param>

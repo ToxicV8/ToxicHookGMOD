@@ -25,7 +25,7 @@ void Logger::Initialize()
 	Version ver = g_pGlobals->GetVersion();
 	
 	char buffer[80];
-	sprintf(buffer, "ToxicHook Garrys Mod Edition v%i.%i.%i by Lasertrap", ver.m_iMajor, ver.m_iMinor, ver.m_iBuild);
+	sprintf_s(buffer, "ToxicHook Garrys Mod Edition v%i.%i.%i by Lasertrap", ver.m_iMajor, ver.m_iMinor, ver.m_iBuild);
 
 	SetConsoleTitleA(buffer);
 }

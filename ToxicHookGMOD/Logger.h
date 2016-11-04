@@ -29,7 +29,6 @@ public:
 	/// Finalizes an instance of the <see cref="Logger"/> class.
 	/// </summary>
 	~Logger();
-private:
 };
 
 extern Logger* g_pLogger;

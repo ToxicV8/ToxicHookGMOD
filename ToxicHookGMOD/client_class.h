@@ -5,21 +5,12 @@ class IClientNetworkable;
 typedef IClientNetworkable*	(*CreateClientClassFn)(int entnum, int serialNum);
 typedef IClientNetworkable*	(*CreateEventFn)();
 
-//-----------------------------------------------------------------------------
-// Purpose: Client side class definition
-//-----------------------------------------------------------------------------
-class ClientClass
+struct ClientClass
 {
-public:
-	ClientClass(char *pNetworkName, CreateClientClassFn createFn, CreateEventFn createEventFn, RecvTable *pRecvTable);
-
-	virtual const char* GetName();
-
-public:
-	CreateClientClassFn		m_pCreateFn;
-	CreateEventFn			m_pCreateEventFn;	// Only called for event objects.
-	char					*m_pNetworkName;
-	RecvTable				*m_pRecvTable;
-	ClientClass				*m_pNext;
-	int						m_ClassID;	// Managed by the engine.
+	void*			m_pCreateFn;
+	void*			m_pCreateEventFn;
+	char			*m_pNetworkName;
+	RecvTable		*m_pRecvTable;
+	ClientClass		*m_pNext;
+	int				m_ClassID;
 };

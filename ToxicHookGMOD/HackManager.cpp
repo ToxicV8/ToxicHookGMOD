@@ -16,6 +16,12 @@ void HackManager::Start()
 
 	g_pInterfaceManager->FindInterfaces();
 
+	g_pLogger->Log("Scanning NetVars");
+	
+	g_pNetVarManager = new NetVarManager;
+
+	g_pNetVarManager->FindOffsets();
+
 	g_pLogger->Log("Hooking...");
 
 	g_pHookManager->Hook();
@@ -35,6 +41,7 @@ void HackManager::Stop()
 	delete g_pGlobals;
 	delete g_pLogger;
 	delete g_pInterfaceManager;
+	delete g_pNetVarManager;
 	delete g_pHookManager;
 }
 

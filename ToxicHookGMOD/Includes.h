@@ -18,5 +18,7 @@
 #include "SDK.h"
 #include "InterfaceManager.h"
 #include "HookManager.h"
+#include "NetVarManager.h"
+#include "CBaseEntity.h"
 #include "HackManager.h"
 
