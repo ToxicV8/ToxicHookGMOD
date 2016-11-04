@@ -1,5 +1,6 @@
 #pragma once
 #include "SDK.h"
+
 class IClientEntityList
 {
 public:

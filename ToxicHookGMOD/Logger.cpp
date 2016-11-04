@@ -34,7 +34,7 @@ void Logger::Log(const char* format, ...)
 {
 	va_list va;
 	va_start(va, format);
-	std::string str = "[" + g_pUtils->GetFormattedTime("%H:%S:%M") + "] " + g_pUtils->ArgListToString(format, va);
+	std::string str = "[" + g_pUtils->GetFormattedTime("%H:%M:%S") + "] " + g_pUtils->ArgListToString(format, va);
 	printf((str + "\n").c_str());
 	va_end(va);
 }

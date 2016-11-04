@@ -3,6 +3,7 @@
 
 class CBaseEntity
 {
+public:
 	/// <summary>
 	/// Prevents a default instance of the <see cref="CBaseEntity"/> class from being created.
 	/// </summary>

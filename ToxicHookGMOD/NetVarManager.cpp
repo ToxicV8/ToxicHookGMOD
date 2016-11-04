@@ -8,24 +8,18 @@ NetVarManager::NetVarManager()
 
 	ClientClass *clientClass = g_pBaseClientDLL->Interface()->GetAllClasses();
 
-	if (!clientClass)
-		return;
-
 	while (clientClass)
 	{
-		RecvTable *recvTable = clientClass->m_pRecvTable;
-
-		m_tables.emplace_back(recvTable);
-
+		m_tables.emplace_back(clientClass->m_pRecvTable);
 		clientClass = clientClass->m_pNext;
 	}
 }
 
 void NetVarManager::FindOffsets()
 {
-	FIND_NETVAR("DT_BasePlayer", "m_iHealth");
-	FIND_NETVAR("DT_BasePlayer", "m_iTeamNum");
-	FIND_NETVAR("DT_BasePlayer", "m_vecOrigin");
+	FIND_NETVAR("DT_BaseEntity", "m_iTeamNum");
+	FIND_NETVAR("DT_BaseEntity", "m_iHealth");
+	FIND_NETVAR("DT_BaseEntity", "m_vecOrigin");
 }
 
 int NetVarManager::GetOffset(const char* tableName, const char* propName)
@@ -34,11 +28,11 @@ int NetVarManager::GetOffset(const char* tableName, const char* propName)
 
 	if (!offset)
 	{
-		g_pLogger->Log("[NetVarManager] Could not find %s", propName);
+		g_pLogger->Log("[NetVarManager] Could not find %s::%s", tableName, propName);
 		return 0;
 	}
 
-	g_pLogger->Log("[NetVarManager] Found %s at 0x%X", propName, offset);
+	g_pLogger->Log("[NetVarManager] Found %s::%s at 0x%X", tableName, propName, offset);
 
 	return offset;
 }
@@ -52,19 +46,19 @@ bool NetVarManager::HookProperty(const char *tableName, const char *propName, Re
 	if (!recvProp)
 		return false;
 
-	recvProp->m_ProxyFn = function;
+	recvProp->SetProxyFn(function);
 
 	return true;
 }
 
 int NetVarManager::GetProperty(const char *tableName, const char *propName, RecvProp **prop)
 {
-	RecvTable *recvTable = GetTable(tableName);
+	RecvTable *recvTable = this->GetTable(tableName);
 
 	if (!recvTable)
 		return 0;
 
-	int offset = GetProperty(recvTable, propName, prop);
+	int offset = this->GetProperty(recvTable, propName, prop);
 
 	if (!offset)
 		return 0;
@@ -76,28 +70,28 @@ int NetVarManager::GetProperty(RecvTable *recvTable, const char *propName, RecvP
 {
 	int extraOffset = 0;
 
-	for (int i = 0; i < recvTable->m_nProps; ++i) // Loop through all propertys
+	for (int i = 0; i < recvTable->GetNumProps(); ++i) // Loop through all propertys
 	{
-		RecvProp *recvProp = &recvTable->m_pProps[i];
+		RecvProp *recvProp = recvTable->Get_Prop(i);
 
-		RecvTable *child = recvProp->m_pDataTable;
+		RecvTable *child = recvProp->GetDataTable();
 
-		if (child && child->m_nProps > 0)
+		if (child && (child->GetNumProps() > 0))
 		{
-			int temporary = GetProperty(child, propName, prop);
+			int temporary = this->GetProperty(child, propName, prop);
 
 			if (temporary)
-				extraOffset += (recvProp->m_Offset + temporary);
+				extraOffset += (recvProp->GetOffset() + extraOffset);
+		
 		}
 
-		if (stricmp(recvProp->m_pVarName, propName))
+		if (stricmp(recvProp->GetName(), propName))
 			continue;
-
 
 		if (prop)
 			*prop = recvProp;
-
-		return (recvProp->m_Offset + extraOffset);
+		
+		return (recvProp->GetOffset() + extraOffset);
 	}
 
 	return extraOffset;
@@ -105,12 +99,9 @@ int NetVarManager::GetProperty(RecvTable *recvTable, const char *propName, RecvP
 
 RecvTable *NetVarManager::GetTable(const char *tableName)
 {
-	if (m_tables.empty())
-		return 0;
-
 	for(RecvTable* table : m_tables)
 	{
-		if (table && stricmp(table->m_pNetTableName, tableName) == 0)
+		if (table && !stricmp(table->m_pNetTableName, tableName))
 			return table;
 	}
 
